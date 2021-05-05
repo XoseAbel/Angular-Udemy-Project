@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            class="btn btn-success mx-2"
+            type="submit"
+            [disabled]="recipeForm.invalid"
+          >
+            Save
+          </button>
+          <button
+            class="btn btn-danger mx-2"
+            type="button"
+            (click)="onCancel()"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          class="form-control"
+          formControlName="name"
+        />
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          class="form-control"
+          rows="5"
+          formControlName="description"
+        ></textarea>
+        <label for="imgPath">Image Path</label>
+        <input
+          type="text"
+          id="imgPath"
+          class="form-control"
+          formControlName="imagePath"
+        />
+        <img
+          src="{{ recipeForm.value.imagePath }}"
+          class="img-responsive"
+          style="max-height: 300px; margin: 5px auto"
+        />
+        <div formArrayName="ingredients">
+          <div
+            class="row addIngredient"
+            *ngFor="let ingredientCtrl of controls; let i = index"
+            [formGroupName]="i"
+          >
+            <div class="col-sm-8">
+              <input
+                type="text"
+                id="name"
+                class="form-control"
+                formControlName="name"
+              />
+            </div>
+            <div class="col-sm-2">
+              <input
+                type="number"
+                id="amount"
+                class="form-control"
+                formControlName="amount"
+              />
+            </div>
+            <div class="col-sm-2">
+              <button
+                class="btn btn-danger mx-2"
+                type="button"
+                (click)="onDeleteIngredient(i)"
+              >
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <button
+          class="btn btn-success"
+          type="button"
+          (click)="onAddIngredient()"
+        >
+          Add Ingredient
+        </button>
+        <button
+          class="btn btn-danger mx-2"
+          type="button"
+          (click)="onDeleteAllIngredients()"
+        >
+          Delete All Ingredient
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+.addIngredient {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 10px;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 1px solid red;
+}

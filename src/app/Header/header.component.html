@@ -1,0 +1,56 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="#" class="navbar-brand">Recipe Book</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li
+          routerLink="/recipes"
+          routerLinkActive="active"
+          style="cursor: pointer"
+          *ngIf="isAuthenticated"
+        >
+          <a>Recipes</a>
+        </li>
+        <li
+          routerLink="/auth"
+          routerLinkActive="active"
+          style="cursor: pointer"
+          *ngIf="!isAuthenticated"
+        >
+          <a>Authenticate</a>
+        </li>
+        <li
+          routerLink="/shopping-list"
+          routerLinkActive="active"
+          style="cursor: pointer"
+        >
+          <a>Shopping List</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li
+          style="cursor: pointer"
+          *ngIf="isAuthenticated"
+          (click)="onLogout()"
+        >
+          <a>Logout</a>
+        </li>
+        <li class="dropdown" appDropdown *ngIf="isAuthenticated">
+          <a class="dropdown-toggle" role="button"
+            >Manage <span class="caret"></span
+          ></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a style="cursor: pointer" (click)="handleSave()">Saving Data</a>
+            </li>
+            <li>
+              <a style="cursor: pointer" (click)="handleFetch()">Fetch Data</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
